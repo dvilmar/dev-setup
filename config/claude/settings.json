@@ -1,13 +1,76 @@
 {
-  "theme": "dark",
-  "effortLevel": "medium",
+  "permissions": {
+    "ask": ["mcp__*"]
+  },
   "enabledPlugins": {
     "vercel@claude-plugins-official": true
   },
-  "permissions": {
-    "allow": [
-      "Read(/mnt/c/Users/**)",
-      "Bash(wsl.exe -l)"
+  "effortLevel": "medium",
+  "theme": "dark",
+  "hooks": {
+    "SessionStart": [
+      {
+        "matcher": "",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "\"/home/danielvilar/.cursor-server/bin/d5b2fc092e16007956c9e5047f76097b9e626ca0/node\" \"/home/danielvilar/.claude/.claude-manager/session-start-tap.js\""
+          }
+        ]
+      }
     ]
+  },
+  "mcpServers": {
+    "filesystem": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "@modelcontextprotocol/server-filesystem",
+        "/home/danielvilar"
+      ]
+    },
+    "docker": {
+      "command": "docker",
+      "args": [
+        "run",
+        "-i",
+        "--rm",
+        "-v",
+        "/var/run/docker.sock:/var/run/docker.sock",
+        "docker/mcp-server"
+      ]
+    },
+    "vercel": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "@vercel/mcp-server"
+      ],
+      "env": {
+        "VERCEL_TOKEN": "${VERCEL_TOKEN}"
+      }
+    },
+    "google-drive": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "@modelcontextprotocol/server-gdrive"
+      ],
+      "env": {
+        "GDRIVE_CREDENTIALS_PATH": "/home/danielvilar/.claude/gdrive-credentials.json"
+      }
+    },
+    "supabase": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "@supabase/mcp-server-supabase@latest",
+        "--read-only"
+      ],
+      "env": {
+        "SUPABASE_URL": "${SUPABASE_URL}",
+        "SUPABASE_SERVICE_KEY": "${SUPABASE_SERVICE_KEY}"
+      }
+    }
   }
 }
