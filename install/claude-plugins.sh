@@ -25,10 +25,23 @@ else
   echo "  Settings created"
 fi
 
+# Inyectar hook de sesión con ruta real (no portable en JSON estático)
+TAP_JS="$HOME/.claude/.claude-manager/session-start-tap.js"
+if [ -f "$TAP_JS" ]; then
+  echo "Injecting SessionStart hook..."
+  NODE_BIN=$(command -v node 2>/dev/null || echo "node")
+  tmp=$(mktemp)
+  jq --arg cmd "$NODE_BIN \"$TAP_JS\"" '
+    .hooks.SessionStart = [{"matcher": "", "hooks": [{"type": "command", "command": $cmd}]}]
+  ' "$CLAUDE_SETTINGS" > "$tmp"
+  mv "$tmp" "$CLAUDE_SETTINGS"
+  echo "  Hook injected: $NODE_BIN $TAP_JS"
+else
+  echo "  session-start-tap.js not found — hook skipped (se crea al iniciar Claude Code)"
+fi
+
 echo ""
-echo "Plugin Vercel: install manually from Claude Code UI"
-echo "  1. Open Claude Code"
-echo "  2. /marketplace → search 'vercel' → Install"
-echo "  Or: claude.ai/claude-code → Plugins"
+echo "Plugin Vercel: instalar manualmente desde Claude Code"
+echo "  /marketplace → buscar 'vercel' → Install"
 echo ""
 echo "Plugins configured"

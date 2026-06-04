@@ -9,18 +9,5 @@
       "Read(/mnt/c/Users/**)",
       "Bash(wsl.exe -l)"
     ]
-  },
-  "hooks": {
-    "SessionStart": [
-      {
-        "matcher": "",
-        "hooks": [
-          {
-            "type": "command",
-            "command": "node /home/danielvilar/.claude/.claude-manager/session-start-tap.js"
-          }
-        ]
-      }
-    ]
   }
 }
