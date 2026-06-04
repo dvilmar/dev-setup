@@ -1,0 +1,13 @@
+{
+    "typescript.updateImportsOnFileMove.enabled": "always",
+    "window.autoDetectColorScheme": false,
+    "workbench.colorTheme": "Catppuccin Mocha",
+    "workbench.iconTheme": "catppuccin-mocha",
+    "claudeCodeChat.wsl.enabled": true,
+    "claudeCodeChat.wsl.distro": "Ubuntu",
+    "claudeCodeChat.wsl.nodePath": "",
+    "claudeCodeChat.wsl.claudePath": "/usr/local/bin/claude",
+    "claudeCodeChat.executable.path": "",
+    "claudeCodeChat.environment.variables": {},
+    "claudeCodeChat.router.enabled": false
+}

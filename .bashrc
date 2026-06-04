@@ -85,3 +85,10 @@ alias explorer='explorer.exe .'                  # abrir carpeta en Explorer
 cursor() {
   /mnt/c/Users/Daniel/AppData/Local/Programs/cursor/Cursor.exe "${@:-.}" &
 }
+
+# ── Secrets (MCP tokens, etc.) ────────────────────────────────────────────────
+[ -f "$HOME/.env.secrets" ] && source "$HOME/.env.secrets"
+
+# NVM (auto-added by dev-setup)
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"

@@ -28,8 +28,11 @@
 - Next steps: 
 
 ## MCPs connected
-- Supabase — use sparingly, /compact after heavy queries
-- Google Drive
+- filesystem — acceso a /home/danielvilar
+- docker — gestión de contenedores
+- vercel — deployments y env vars (requiere VERCEL_TOKEN)
+- google-drive — archivos en Drive
+- supabase — use sparingly, /compact after heavy queries (requiere SUPABASE_URL + SUPABASE_SERVICE_KEY)
 
 ## Notes
 <!-- Anything else Claude should remember -->

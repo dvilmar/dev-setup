@@ -1,0 +1,26 @@
+{
+  "theme": "dark",
+  "effortLevel": "medium",
+  "enabledPlugins": {
+    "vercel@claude-plugins-official": true
+  },
+  "permissions": {
+    "allow": [
+      "Read(/mnt/c/Users/**)",
+      "Bash(wsl.exe -l)"
+    ]
+  },
+  "hooks": {
+    "SessionStart": [
+      {
+        "matcher": "",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "node \"${HOME}/.claude/.claude-manager/session-start-tap.js\""
+          }
+        ]
+      }
+    ]
+  }
+}

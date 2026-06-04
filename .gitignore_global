@@ -9,6 +9,7 @@
 .env
 .env.local
 .env.*.local
+.env.secrets
 
 # Dependencies
 node_modules/
@@ -28,3 +29,5 @@ npm-debug.log*
 
 # OS
 Thumbs.db
+
+**/.claude/settings.local.json
