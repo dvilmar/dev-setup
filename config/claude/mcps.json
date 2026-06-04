@@ -14,7 +14,7 @@
     },
     "vercel": {
       "command": "npx",
-      "args": ["-y", "@vercel/mcp-adapter"],
+      "args": ["-y", "@vercel/mcp-server"],
       "env": {
         "VERCEL_TOKEN": "${VERCEL_TOKEN}"
       }
@@ -23,7 +23,7 @@
       "command": "npx",
       "args": ["-y", "@modelcontextprotocol/server-gdrive"],
       "env": {
-        "GDRIVE_CREDENTIALS_PATH": "${HOME}/.claude/gdrive-credentials.json"
+        "GDRIVE_CREDENTIALS_PATH": "/home/danielvilar/.claude/gdrive-credentials.json"
       }
     },
     "supabase": {

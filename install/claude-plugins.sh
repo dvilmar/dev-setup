@@ -5,20 +5,14 @@ echo "Claude Code plugins setup..."
 
 ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 CLAUDE_SETTINGS="$HOME/.claude/settings.json"
-
-if ! command -v claude &>/dev/null; then
-  echo "Claude Code not installed — run install/claude.sh first"
-  exit 1
-fi
+SETTINGS_CONFIG="$ROOT/config/claude/settings.json"
 
 if ! command -v jq &>/dev/null; then
   echo "jq required — run install/system.sh first"
   exit 1
 fi
 
-# Apply non-secret settings (theme, effortLevel, permissions, plugins)
-SETTINGS_CONFIG="$ROOT/config/claude/settings.json"
-
+# Merge settings (tema, effortLevel, permisos, plugins) sobre los existentes
 if [ -f "$CLAUDE_SETTINGS" ]; then
   echo "Applying Claude settings..."
   tmp=$(mktemp)
@@ -31,8 +25,10 @@ else
   echo "  Settings created"
 fi
 
-# Install Vercel plugin via Claude Code marketplace
-echo "Installing Vercel plugin..."
-claude plugin install vercel 2>/dev/null || echo "  (already installed or run manually: claude plugin install vercel)"
-
+echo ""
+echo "Plugin Vercel: install manually from Claude Code UI"
+echo "  1. Open Claude Code"
+echo "  2. /marketplace → search 'vercel' → Install"
+echo "  Or: claude.ai/claude-code → Plugins"
+echo ""
 echo "Plugins configured"

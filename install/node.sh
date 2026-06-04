@@ -10,7 +10,6 @@ if [ ! -d "$NVM_DIR" ]; then
   curl -fsSL https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.7/install.sh | bash
 fi
 
-export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
 
 nvm install --lts
@@ -19,8 +18,8 @@ nvm alias default 'lts/*'
 
 echo "Node installed: $(node -v)"
 
-# persist in bashrc
-if ! grep -q "NVM_DIR" "$HOME/.bashrc"; then
+# Solo añadir al .bashrc si no está ya (por si dotfiles.sh aún no ha corrido)
+if ! grep -q "NVM_DIR" "$HOME/.bashrc" 2>/dev/null; then
   cat >> "$HOME/.bashrc" << 'EOF'
 
 # NVM (auto-added by dev-setup)

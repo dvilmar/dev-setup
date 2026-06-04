@@ -12,30 +12,41 @@ if ! command -v jq &>/dev/null; then
   exit 1
 fi
 
-# Pull docker/mcp-server image if docker is available
+# Advertir sobre secrets faltantes
+missing=0
+[ -z "$VERCEL_TOKEN" ]          && echo "  WARN VERCEL_TOKEN not set"       && missing=1
+[ -z "$SUPABASE_URL" ]          && echo "  WARN SUPABASE_URL not set"        && missing=1
+[ -z "$SUPABASE_SERVICE_KEY" ]  && echo "  WARN SUPABASE_SERVICE_KEY not set" && missing=1
+if [ $missing -eq 1 ]; then
+  echo ""
+  echo "  Set missing vars in ~/.env.secrets and re-run, or MCPs fallarán al arrancar."
+  echo ""
+fi
+
+# Pull docker/mcp-server image si docker está disponible
 if command -v docker &>/dev/null; then
   echo "Pulling docker/mcp-server..."
   docker pull docker/mcp-server 2>/dev/null || echo "  (skipped — Docker not running)"
 fi
 
-# Merge mcpServers into ~/.claude/settings.json
+# Merge SOLO los mcpServers nuevos sobre los existentes (no sobreescribe todo)
 if [ -f "$CLAUDE_SETTINGS" ]; then
   echo "Merging MCP config into $CLAUDE_SETTINGS..."
   tmp=$(mktemp)
-  jq -s '.[0] * {"mcpServers": .[1].mcpServers}' "$CLAUDE_SETTINGS" "$MCPS_CONFIG" > "$tmp"
+  # Deep merge: mcpServers existentes + nuevos (los nuevos tienen prioridad por clave)
+  jq -s '
+    .[0] + {
+      mcpServers: (
+        (.[0].mcpServers // {}) + .[1].mcpServers
+      )
+    }
+  ' "$CLAUDE_SETTINGS" "$MCPS_CONFIG" > "$tmp"
   mv "$tmp" "$CLAUDE_SETTINGS"
-  echo "  MCPs merged"
+  echo "  MCPs merged (existing MCPs preserved)"
 else
-  echo "  $CLAUDE_SETTINGS not found — creating from MCP config"
+  echo "  $CLAUDE_SETTINGS not found — creating"
   mkdir -p "$HOME/.claude"
   cp "$MCPS_CONFIG" "$CLAUDE_SETTINGS"
 fi
 
-# Warn about required secrets
-echo ""
-echo "Required env vars (add to ~/.env.secrets):"
-echo "  VERCEL_TOKEN     — https://vercel.com/account/tokens"
-echo "  SUPABASE_URL     — Supabase project URL"
-echo "  SUPABASE_SERVICE_KEY — Supabase service role key"
-echo ""
 echo "MCPs configured: filesystem, docker, vercel, google-drive, supabase"

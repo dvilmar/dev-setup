@@ -17,7 +17,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "node \"${HOME}/.claude/.claude-manager/session-start-tap.js\""
+            "command": "node /home/danielvilar/.claude/.claude-manager/session-start-tap.js"
           }
         ]
       }
