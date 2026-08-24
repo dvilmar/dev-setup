@@ -9,5 +9,8 @@
     "claudeCodeChat.wsl.claudePath": "/usr/local/bin/claude",
     "claudeCodeChat.executable.path": "",
     "claudeCodeChat.environment.variables": {},
-    "claudeCodeChat.router.enabled": false
+    "claudeCodeChat.router.enabled": false,
+    "remote.SSH.remotePlatform": {
+        "wsl-omen": "linux"
+    }
 }
