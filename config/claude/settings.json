@@ -1,12 +1,9 @@
 {
   "permissions": {
-    "ask": ["mcp__*"]
+    "ask": [
+      "mcp__*"
+    ]
   },
-  "enabledPlugins": {
-    "vercel@claude-plugins-official": true
-  },
-  "effortLevel": "medium",
-  "theme": "dark",
   "hooks": {
     "SessionStart": [
       {
@@ -20,6 +17,11 @@
       }
     ]
   },
+  "enabledPlugins": {
+    "vercel@claude-plugins-official": true
+  },
+  "effortLevel": "medium",
+  "theme": "dark",
   "mcpServers": {
     "filesystem": {
       "command": "npx",
@@ -72,5 +74,6 @@
         "SUPABASE_SERVICE_KEY": "${SUPABASE_SERVICE_KEY}"
       }
     }
-  }
+  },
+  "tui": "fullscreen"
 }
