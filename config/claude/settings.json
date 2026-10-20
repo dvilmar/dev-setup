@@ -21,6 +21,7 @@
     "vercel@claude-plugins-official": true
   },
   "effortLevel": "medium",
+  "tui": "fullscreen",
   "theme": "dark",
   "mcpServers": {
     "filesystem": {
@@ -75,5 +76,5 @@
       }
     }
   },
-  "tui": "fullscreen"
+  "switchModelsOnFlag": false
 }
