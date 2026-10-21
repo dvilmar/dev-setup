@@ -23,6 +23,7 @@
   "effortLevel": "medium",
   "tui": "fullscreen",
   "theme": "dark",
+  "switchModelsOnFlag": false,
   "mcpServers": {
     "filesystem": {
       "command": "npx",
@@ -76,5 +77,33 @@
       }
     }
   },
-  "switchModelsOnFlag": false
+  "autoMode": {
+    "environment": [
+      "### Org-wide",
+      "**Organization**: None configured",
+      "**Cloud provider(s)**: None configured",
+      "**Repository visibility**: not queryable here — assume private (GitHub default for personal repos under dvilmar/QX-Core); no public/unverified signal found",
+      "**Internal sharing / snippet hosting**: None configured — treat public paste/gist services as outside the trust boundary",
+      "**Secrets management**: None configured — repo uses a local `.env` file (gitignored) for credentials (TELEGRAM_BOT_TOKEN, ALPACA_API_KEY, ALPACA_SECRET_KEY, etc.)",
+      "**Default / protected branches**: default branch is `master`; protection/rulesets not queryable here — treat as unverified, do not assume unprotected",
+      "**CI/CD deploy targets**: None configured",
+      "**Network posture**: None configured",
+      "**Host containment**: None configured — assume Claude Code runs on an ordinary developer machine (WSL2 Ubuntu 24.04 on Windows) with open internet",
+      "**Source control**: The trusted repo (dvilmar/QX-Core) and its origin remote (https://github.com/dvilmar/QX-Core.git) only — no additional orgs configured",
+      "**Trusted internal domains**: None configured",
+      "**Trusted cloud buckets**: None configured",
+      "**Key internal services**: None configured",
+      "**Internal package registry**: None configured",
+      "**Sensitive data locations & audiences**: `.env` and `.env.example` (API keys/tokens: TELEGRAM_BOT_TOKEN, ALPACA_API_KEY, ALPACA_SECRET_KEY, SLACK_WEBHOOK_URL) — share only with audiences cleared at the [named+specifics] bar",
+      "**Data retention / declassification**: None configured",
+      "**Sensitive remote targets**: any namespace, host, or container whose name carries `prod` or `production` as a whole word or name segment",
+      "**Protected deployment namespaces / environments**: None configured — fall back to the Sensitive remote targets heuristic",
+      "**Protected IaC scopes**: IAM, RBAC, networking, quota, and node-pool resources; anything whose name or tag carries `prod` or `production` as a whole word or name segment",
+      "### User-specific",
+      "**Primary use of Claude Code**: software development — quantitative trading research and paper-trading systems (QX-Core), full-stack dev (React/Next.js, Supabase, PostgreSQL, Docker) per global CLAUDE.md",
+      "**Trusted repo**: /mnt/c/Users/Daniel/Documents/my-workspace/QX-Core (dvilmar/QX-Core) and its origin remote — this repo is paper trading only (no real money, per README); do not treat trading/order-execution commands here as real-world financial transactions unless evidence shows otherwise",
+      "**Org-specific CLIs**: None configured — personal CLI usage includes freqtrade, docker, npx/npm, ollama, gh, proxmark3, adb (hobbyist/dev tools, not org-specific)",
+      "routine under dvilmar/QX-Core prefix: git and file operations scoped to this repo's working tree"
+    ]
+  }
 }
